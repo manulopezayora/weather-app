@@ -1,9 +1,12 @@
-<form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="form-field">
-    <app-input-text formControlName="username" />
-  </div>
-  <div class="form-field">
-    <app-input-text formControlName="password" />
-  </div>
-  <p-button label="login" type="submit" aria-label="Submit" />
-</form>
+<div class="container">
+  <form class="form" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form__field">
+      <app-input-text label="username" formControlName="username" />
+    </div>
+
+    <div class="form__field">
+      <app-input-password label="password" formControlName="password" />
+    </div>
+    <p-button label="login" type="submit" aria-label="Submit" />
+  </form>
+</div>

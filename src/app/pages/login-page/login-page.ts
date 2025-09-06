@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputText } from "@components/index";
+import { InputPassword } from "@components/input-password/input-password";
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-login-page',
-  imports: [InputText, ReactiveFormsModule, ButtonModule],
+  imports: [InputText, ReactiveFormsModule, ButtonModule, InputPassword],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css'
 })
