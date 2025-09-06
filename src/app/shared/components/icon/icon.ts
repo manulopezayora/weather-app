@@ -10,6 +10,7 @@ export class Icon {
 
   public iconName = input.required<string>();
   public color = input<string>('');
+  public size = input<string>();
 
   public icon = computed(() => `pi pi-${this.iconName()}`);
 
