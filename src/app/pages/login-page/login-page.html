@@ -1,12 +1,20 @@
 <div class="container">
+  <h2 class="login-title">Bienvenido de nuevo</h2>
   <form class="form" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
     <div class="form__field">
-      <app-input-text label="username" formControlName="username" />
+      <app-input-text id="username" label="username" formControlName="username" />
     </div>
 
     <div class="form__field">
-      <app-input-password label="password" formControlName="password" />
+      <app-input-password id="password" label="password" formControlName="password" />
     </div>
+
+    <div class="form__field">
+      <app-input-checkbox id="remember" label="Remember me" formControlName="remember" />
+      <a routerLink="/register">Crea una cuenta nueva</a>
+    </div>
+
     <p-button label="login" type="submit" aria-label="Submit" />
   </form>
 </div>

@@ -14,6 +14,8 @@ import { PasswordModule } from 'primeng/password';
   ]
 })
 export class InputPassword implements ControlValueAccessor {
+
+  public id = input.required<string>();
   public label = input.required<string>();
   public placeholder = input<string>();
 

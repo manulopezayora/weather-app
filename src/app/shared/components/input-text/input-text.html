@@ -1,8 +1,8 @@
 <p-floatlabel variant="on">
-    <label [for]="label()">{{ label() }}</label>
+    <label [for]="id()">{{ label() }}</label>
     <input
       pInputText
-      [id]="label()"
+      [id]="id()"
       [disabled]="disabled()"
       [ngModel]="value()"
       (ngModelChange)="onInputChange($event)"

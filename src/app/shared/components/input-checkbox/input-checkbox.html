@@ -1,0 +1,12 @@
+<div class="checkbox">
+    <div class="checkbox__wrapper">
+        <p-checkbox
+          [inputId]="id()"
+          [disabled]="disabled()"
+          [ngModel]="value()"
+          [binary]="true"
+          (ngModelChange)="onInputChange($event)"
+        />
+        <label [for]="id()" class="ml-2">{{ label() }}</label>
+    </div>
+</div>
