@@ -9,6 +9,9 @@
       "@components/*": [
         "src/app/shared/components/*"
       ],
+      "@utils/*": [
+        "src/app/shared/utils/*"
+      ],
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
