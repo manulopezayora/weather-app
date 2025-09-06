@@ -1,20 +1,19 @@
 import { Component, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule } from '@angular/forms';
 import { createNgValueAccessor } from '@utils/form-utils';
-import { FloatLabel } from 'primeng/floatlabel';
-import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
-  selector: 'app-input-text',
-  imports: [InputTextModule, FormsModule, FloatLabel],
-  templateUrl: './input-text.html',
-  styleUrl: './input-text.css',
+  selector: 'app-input-password',
+  imports: [FormsModule, PasswordModule, FloatLabelModule],
+  templateUrl: './input-password.html',
+  styleUrl: './input-password.css',
   providers: [
-    createNgValueAccessor(InputText)
+    createNgValueAccessor(InputPassword)
   ]
 })
-export class InputText implements ControlValueAccessor {
-
+export class InputPassword implements ControlValueAccessor {
   public label = input.required<string>();
   public placeholder = input<string>();
 
@@ -45,4 +44,5 @@ export class InputText implements ControlValueAccessor {
   public setDisabledState(isDisabled: boolean): void {
     this.disabled.set(isDisabled);
   }
+
 }
