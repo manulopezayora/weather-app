@@ -1,0 +1,23 @@
+<p-toolbar class="header">
+  <ng-template #start>
+    <section class="header__title-container">
+      <icon iconName="cloud" color="cyan" size="2rem" />
+      <h1 class="title">WeatherApp</h1>
+    </section>
+  </ng-template>
+
+  <ng-template #end>
+    <div class="header__end-container">
+      <section class="header__menu">
+          <p><a>Home</a></p>
+          <p><a>Favorites</a></p>
+      </section>
+      <section class="flex items-center gap-2">
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+          [style]="{ width: '32px', height: '32px' }"
+        />
+      </section>
+    </div>
+  </ng-template>
+</p-toolbar>
