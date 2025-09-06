@@ -11,7 +11,6 @@ import { loadWeather } from './store/weather/weather.actions';
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'weather-app';
 
   private store = inject(Store);
 
