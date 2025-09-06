@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { loadWeather } from './store/weather/weather.actions';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +11,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected title = 'weather-app';
+
+  private store = inject(Store);
+
+  constructor() {
+    this.store.dispatch(loadWeather({ city: 'valencia' }));
+  }
 }
