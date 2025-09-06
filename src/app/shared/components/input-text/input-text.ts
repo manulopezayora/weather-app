@@ -1,11 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule } from '@angular/forms';
 import { createNgValueAccessor } from '@utils/form-utils';
+import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-input-text',
-  imports: [InputTextModule, FormsModule],
+  imports: [InputTextModule, FormsModule, FloatLabel],
   templateUrl: './input-text.html',
   styleUrl: './input-text.css',
   providers: [
@@ -13,6 +14,10 @@ import { InputTextModule } from 'primeng/inputtext';
   ]
 })
 export class InputText implements ControlValueAccessor {
+
+  public label = input.required<string>();
+  public placeholder = input<string>();
+
   public value = signal('');
   public disabled = signal(false);
 
