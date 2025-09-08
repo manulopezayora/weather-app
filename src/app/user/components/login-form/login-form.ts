@@ -1,7 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Button, ButtonLink, InputCheckbox, InputPassword, InputText } from "@components/index";
+import { notSpacesPattern } from '@utils/form-utils';
+import { AuthService } from 'src/app/core/services/auth-service/auth-service';
+
+interface LoginFormControls {
+  username: FormControl<string>;
+  password: FormControl<string>;
+  remember: FormControl<boolean>;
+}
 
 @Component({
   selector: 'app-login-form',
@@ -20,15 +28,20 @@ import { Button, ButtonLink, InputCheckbox, InputPassword, InputText } from "@co
 export class LoginForm {
 
   private formBuilder = inject(FormBuilder);
+  private authService = inject(AuthService);
 
-  public loginForm: FormGroup = this.formBuilder.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    remember: [false],
+  public loginForm: FormGroup<LoginFormControls> = this.formBuilder.group<LoginFormControls>({
+    username: this.formBuilder.control('', { validators: [Validators.required, Validators.pattern(notSpacesPattern)], nonNullable: true }),
+    password: this.formBuilder.control('', { validators: [Validators.required], nonNullable: true }),
+    remember: this.formBuilder.control(false, { validators: [Validators.required], nonNullable: true }),
   });
 
   public onSubmit() {
-    console.log(this.loginForm.value);
+     this.loginForm.markAllAsTouched();
+
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value as User)
+    }
   }
 
 }

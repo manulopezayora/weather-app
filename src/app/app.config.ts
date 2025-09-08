@@ -9,6 +9,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import Aura from '@primeuix/themes/aura';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
+import { UserEffects } from './store/user/user.effects';
+import { userReducer } from './store/user/user.reducer';
 import { WeatherEffects } from './store/weather/weather.effects';
 import { weatherReducer } from './store/weather/weather.reducer';
 
@@ -18,8 +20,14 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withFetch()),
-    provideStore({ weather: weatherReducer }),
-    provideEffects([WeatherEffects]),
+    provideStore({
+      user: userReducer,
+      weather: weatherReducer
+    }),
+    provideEffects([
+      UserEffects,
+      WeatherEffects
+    ]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAnimations(),
     providePrimeNG({

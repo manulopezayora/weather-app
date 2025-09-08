@@ -9,7 +9,7 @@ export class UserService {
   private router = inject(Router);
 
   public createUser(user: User) {
-    const existUser = this.getUser(user);
+    const existUser = this.getUser(user.username, user.password);
 
     if (existUser) {
       console.error('User is already exist');
@@ -25,10 +25,10 @@ export class UserService {
     });
   }
 
-  public getUser(user: User): User | undefined {
+  public getUser(username: string, password: string): User | undefined {
     const parsedUsers = this.getParsedUsers();
 
-    return parsedUsers?.find(({ username, password }) => username === user?.username && password === user?.password);
+    return parsedUsers?.find((user) => username === user.username && password === user.password);
   }
 
   private getParsedUsers(): User[] {
