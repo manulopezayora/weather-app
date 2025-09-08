@@ -5,8 +5,12 @@
       [id]="id()"
       [disabled]="disabled()"
       [ngModel]="value()"
+      [invalid]="control()?.invalid && control()?.touched"
       (ngModelChange)="onInputChange($event)"
       pSize="large"
     />
-    <!-- <small id="username-help">Enter your username to reset your password.</small> -->
-  </p-floatlabel>
+</p-floatlabel>
+
+@if (control()?.invalid && control()?.touched) {
+  <small class="input-error" >{{ error() }}</small>
+}

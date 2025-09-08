@@ -1,10 +1,10 @@
 <form class="form" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form__field">
-    <app-input-text id="username" label="Username" formControlName="username" />
+    <app-input-text id="username" label="Username" formControlName="username" [control]="loginForm.controls['username']" />
   </div>
 
   <div class="form__field">
-    <app-input-password id="password" label="Password" formControlName="password" />
+    <app-input-password id="password" label="Password" formControlName="password" [control]="loginForm.controls['password']" />
   </div>
 
   <div class="form__field">
