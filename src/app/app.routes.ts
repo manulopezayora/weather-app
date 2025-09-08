@@ -2,15 +2,15 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'login',
-    loadComponent: () => import('./user/pages/login-page/login-page')
+    path: 'auth',
+    loadChildren: () => import('./user/auth.routes')
   },
   {
-    path: 'register',
-    loadComponent: () => import('./user/pages/register-page/register-page')
+    path: 'weather',
+    loadChildren: () => import('./weather/weather.routes')
   },
   {
     path: '**',
-    redirectTo: '/login'
+    redirectTo: '/auth'
   }
 ];
