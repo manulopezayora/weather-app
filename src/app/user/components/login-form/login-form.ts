@@ -6,13 +6,13 @@ import { Button, ButtonLink, InputCheckbox, InputPassword, InputText } from "@co
 @Component({
   selector: 'app-login-form',
   imports: [
-    RouterLink,
     Button,
     ButtonLink,
     InputCheckbox,
     InputPassword,
     InputText,
     ReactiveFormsModule,
+    RouterLink,
   ],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
