@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard, authMatchGuard } from './core/guards/auth/auth-guard';
 
 export const routes: Routes = [
   {
@@ -7,7 +8,9 @@ export const routes: Routes = [
   },
   {
     path: 'weather',
-    loadChildren: () => import('./weather/weather.routes')
+    loadChildren: () => import('./weather/weather.routes'),
+    canActivate: [authGuard],
+    canMatch: [authMatchGuard]
   },
   {
     path: '**',
