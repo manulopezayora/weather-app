@@ -1,5 +1,5 @@
 import { forwardRef, Type } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 
 export const createNgValueAccessor = <T extends ControlValueAccessor>(component: Type<T>) => ({
   provide: NG_VALUE_ACCESSOR,
@@ -13,9 +13,33 @@ export const getTextError = (errors: ValidationErrors): string | null => {
       case 'required':
         return 'This field is required';
 
+      case 'passwordMismatch':
+        return 'The passwords must match';
+
       default:
         return `Error no controlado ${key}`;
     }
+  }
+
+  return null;
+}
+
+export const passwordsMatchValidator = (group: AbstractControl): ValidationErrors | null => {
+  const password = group.get('password');
+  const confirmPassword = group.get('confirmPassword');
+
+  if (!password || !confirmPassword) {
+    return null;
+  };
+
+  if (password.value !== confirmPassword.value) {
+    confirmPassword.setErrors({ passwordMismatch: true });
+
+    return { passwordMismatch: true };
+  }
+
+  if (confirmPassword.hasError('passwordMismatch')) {
+    confirmPassword.setErrors(null);
   }
 
   return null;
