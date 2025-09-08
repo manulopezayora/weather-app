@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormsModule } from '@angular/forms';
 import { createNgValueAccessor, getTextError } from '@utils/form-utils';
 import { FloatLabel } from 'primeng/floatlabel';
@@ -23,7 +23,9 @@ export class InputText implements ControlValueAccessor {
   public value = signal('');
   public disabled = signal(false);
 
-  public error = computed<string | null>(() => this.control()?.errors ? getTextError(this.control()!.errors!) : null);
+  get errorMessage() {
+    return getTextError(this.control()!.errors!)
+  }
 
   private onChange: any = () => { };
   private onTouched: any = () => { };
