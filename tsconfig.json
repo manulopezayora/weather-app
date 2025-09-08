@@ -12,6 +12,9 @@
       "@utils/*": [
         "src/app/shared/utils/*"
       ],
+      "@weather/*": [
+        "src/app/weather/*"
+      ],
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

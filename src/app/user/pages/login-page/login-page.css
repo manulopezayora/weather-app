@@ -6,17 +6,11 @@
 .login-title {
   font-size: 2rem;
   font-weight: 600;
+  margin: 2rem 0;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-  width: 80%;
-
-  border: 1px solid red;
-}
-
-.form__field {
+.login-form__wrapper {
   width: 100%;
+  display: grid;
+  place-items: center;
 }

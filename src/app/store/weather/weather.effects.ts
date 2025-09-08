@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { WeatherService } from '@weather/services/weatherService/weather-service';
 import { catchError, exhaustMap, map, of } from 'rxjs';
-import { WeatherService } from '../../core/services/weatherService/weather-service';
 import * as WeatherActions from './weather.actions';
 
 @Injectable()

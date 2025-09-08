@@ -1,25 +1,27 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { InputText } from "@components/index";
-import { InputCheckbox } from "@components/input-checkbox/input-checkbox";
-import { InputPassword } from "@components/input-password/input-password";
-import { ButtonModule } from 'primeng/button';
+import { Button, ButtonLink, InputCheckbox, InputPassword, InputText } from "@components/index";
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-login-form',
   imports: [
-    ButtonModule,
+    RouterLink,
+    Button,
+    ButtonLink,
+    InputCheckbox,
     InputPassword,
     InputText,
     ReactiveFormsModule,
-    RouterLink,
-    InputCheckbox
-],
-  templateUrl: './login-page.html',
-  styleUrl: './login-page.css'
+  ],
+  templateUrl: './login-form.html',
+  styleUrl: './login-form.css',
+  host: {
+    class: 'login-form__wrapper',
+  }
 })
-export default class LoginPage {
+export class LoginForm {
+
   private formBuilder = inject(FormBuilder);
 
   public loginForm: FormGroup = this.formBuilder.group({
@@ -31,4 +33,5 @@ export default class LoginPage {
   public onSubmit() {
     console.log(this.loginForm.value);
   }
+
 }

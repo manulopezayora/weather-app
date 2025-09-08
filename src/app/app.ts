@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from '@components/index';
 import { Store } from '@ngrx/store';
-import { loadWeather } from './store/weather/weather.actions';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +14,6 @@ export class App {
   private store = inject(Store);
 
   constructor() {
-    this.store.dispatch(loadWeather({ city: 'valencia' }));
+    // this.store.dispatch(loadWeather({ city: 'valencia' }));
   }
 }
