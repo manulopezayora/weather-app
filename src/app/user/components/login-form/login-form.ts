@@ -15,10 +15,7 @@ import { Button, ButtonLink, InputCheckbox, InputPassword, InputText } from "@co
     RouterLink,
   ],
   templateUrl: './login-form.html',
-  styleUrl: './login-form.css',
-  host: {
-    class: 'login-form__wrapper',
-  }
+  styleUrl: './login-form.css'
 })
 export class LoginForm {
 
