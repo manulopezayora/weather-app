@@ -1,20 +1,46 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  public createUser(user: Partial<User>) {
-    const existUser = localStorage.getItem(user.username!);
+  private router = inject(Router);
 
-    if (!existUser) {
-      const parsedUser = JSON.stringify(user);
-      localStorage.setItem('weatherUser', parsedUser)
+  public createUser(user: User) {
+    const existUser = this.getUser(user);
+
+    if (existUser) {
+      console.error('User is already exist');
+
+      return;
     }
 
-    console.error('User is already exist');
+    this.saveUser({
+      city: user.city || '',
+      favorites: [],
+      password: user.password || '',
+      username: user.username || '',
+    });
+  }
 
+  public getUser(user: User): User | undefined {
+    const parsedUsers = this.getParsedUsers();
+
+    return parsedUsers?.find(({ username, password }) => username === user?.username && password === user?.password);
+  }
+
+  private getParsedUsers(): User[] {
+    const users = localStorage.getItem('weatherUser');
+    return users ? JSON.parse(users) : [];
+  }
+
+  private saveUser(newUser: User): void {
+    const parsedUsers = this.getParsedUsers();
+    const parsedUser = JSON.stringify([...parsedUsers, newUser]);
+    localStorage.setItem('weatherUser', parsedUser);
+    this.router.navigateByUrl('/login');
   }
 
 }

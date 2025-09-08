@@ -41,11 +41,9 @@ export class RegisterForm {
 
     if (this.registerForm.valid) {
       const { username, city, password } = this.registerForm.value;
-      const newUser: Partial<User> = { username, city, password };
-      this.userService.createUser(newUser);
+      const newUser = { username, city, password };
+      this.userService.createUser(newUser as User);
     }
-
-    // if (this.registerForm.errors[''])
   }
 
 }
