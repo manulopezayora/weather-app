@@ -1,6 +1,8 @@
 import { forwardRef, Type } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 
+export const notSpacesPattern = '^[a-zA-Z0-9]+$';
+
 export const createNgValueAccessor = <T extends ControlValueAccessor>(component: Type<T>) => ({
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => component),
@@ -15,6 +17,9 @@ export const getTextError = (errors: ValidationErrors): string | null => {
 
       case 'passwordMismatch':
         return 'The passwords must match';
+
+      case 'pattern':
+        return getPatternTextErrors(errors['pattern']);
 
       default:
         return `Error no controlado ${key}`;
@@ -43,4 +48,13 @@ export const passwordsMatchValidator = (group: AbstractControl): ValidationError
   }
 
   return null;
+}
+
+export const getPatternTextErrors = (patternError: ValidationErrors): string => {
+
+  if (patternError?.['requiredPattern'] === notSpacesPattern) {
+    return 'The format is not correct';
+  }
+
+  return 'Error de patron de expresión regular';
 }

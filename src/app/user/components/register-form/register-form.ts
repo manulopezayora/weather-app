@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Button, InputPassword, InputText } from "@components/index";
-import { passwordsMatchValidator } from '@utils/form-utils';
+import { notSpacesPattern, passwordsMatchValidator } from '@utils/form-utils';
 import { UserService } from '../../services/user-service/user-service';
 
 interface RegisterFormControls {
@@ -28,7 +28,7 @@ export class RegisterForm {
   private userService = inject(UserService);
 
   public registerForm: FormGroup<RegisterFormControls> = this.formBuilder.group<RegisterFormControls>({
-    username: this.formBuilder.control('', { validators: [Validators.required], nonNullable: true }),
+    username: this.formBuilder.control('', { validators: [Validators.required, Validators.pattern(notSpacesPattern)], nonNullable: true }),
     city: this.formBuilder.control('', { validators: [Validators.required], nonNullable: true }),
     password: this.formBuilder.control('', { validators: [Validators.required], nonNullable: true }),
     confirmPassword: this.formBuilder.control('', { validators: [Validators.required], nonNullable: true }),
