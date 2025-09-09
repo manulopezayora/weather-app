@@ -36,7 +36,7 @@ export class RegisterForm {
     validators: [passwordsMatchValidator]
   });
 
-  public onSubmit() {
+  public onSubmit(): void {
     this.registerForm.markAllAsTouched();
 
     if (this.registerForm.valid) {

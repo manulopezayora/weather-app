@@ -10,7 +10,7 @@ export class UserService {
   private router = inject(Router);
   private toastService = inject(ToastService)
 
-  public createUser(user: User) {
+  public createUser(user: User): void {
     const existUser = this.getUser(user.username);
 
     if (existUser) {

@@ -36,7 +36,7 @@ export class LoginForm {
     remember: this.formBuilder.control(false, { validators: [Validators.required], nonNullable: true }),
   });
 
-  public onSubmit() {
+  public onSubmit(): void {
      this.loginForm.markAllAsTouched();
 
     if (this.loginForm.valid) {
