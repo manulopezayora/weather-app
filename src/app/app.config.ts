@@ -7,6 +7,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import Aura from '@primeuix/themes/aura';
+import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { UserEffects } from './store/user/user.effects';
@@ -30,6 +31,7 @@ export const appConfig: ApplicationConfig = {
     ]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAnimations(),
+    MessageService,
     providePrimeNG({
       theme: {
         preset: Aura,

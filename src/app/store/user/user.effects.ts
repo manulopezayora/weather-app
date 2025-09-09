@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth-service/auth-service';
+import { ToastService } from 'src/app/shared/services/toast-service/toast-service';
 import { UserService } from 'src/app/user/services/user-service/user-service';
 import * as UserActions from './user.actions';
 
@@ -11,6 +12,7 @@ export class UserEffects {
   private actions$ = inject(Actions);
   private userService = inject(UserService);
   private authService = inject(AuthService);
+  private toastService = inject(ToastService);
   private router = inject(Router);
 
   loadUser$ = createEffect(() => {
@@ -27,12 +29,13 @@ export class UserEffects {
             const userParsed = user as User;
             this.authService.setLoggedIn(true);
             sessionStorage.setItem('weatherAppUserLogged', user?.username || '');
-            this.router.navigateByUrl('/weather')
+            this.router.navigateByUrl('/weather');
 
             return UserActions.loadUserSuccess({ user: userParsed });
           }),
           catchError(({ message }) => {
             this.authService.setLoggedIn(false);
+            this.toastService.showError(message);
             sessionStorage.removeItem('weatherAppUserLogged');
 
             return of(UserActions.loadUserFailure({ error: message}));

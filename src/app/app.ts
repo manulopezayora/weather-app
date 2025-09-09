@@ -1,18 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from '@components/index';
-import { Store } from '@ngrx/store';
+import { Toast } from 'primeng/toast';
 import { AuthService } from './core/services/auth-service/auth-service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header],
+  imports: [RouterOutlet, Header, Toast],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
 
-  private store = inject(Store);
   private authService = inject(AuthService);
 
   constructor() {
