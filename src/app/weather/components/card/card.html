@@ -1,16 +1,15 @@
-<p-card header="Valencia">
-  <div class="card">
-    <div class="card__info">
-      <div class="info__container">
-        <p>Clima actual</p>
-        <p>22 º C</p>
-        <p>Soleado</p>
+@if (city()) {
+  <p-card>
+    <div class="card">
+      <div class="card__info">
+        <div class="info__container">
+          <p>{{ name() }}</p>
+          <p>{{ temp() }}</p>
+          <p>{{ weather() }}</p>
+        </div>
+        <img [src]="iconUrl()" [alt]="description()">
       </div>
-      <div class="">
-        <!-- <img src="https://picsum.photos/64/64" alt="test"> -->
-         <img src="https://flagcdn.com/24x18/es.png" alt="España">
-      </div>
+      <app-button label="Add to favorites" icon="heart" />
     </div>
-    <app-button label="Add to favorites" icon="heart" />
-  </div>
-</p-card>
+  </p-card>
+}

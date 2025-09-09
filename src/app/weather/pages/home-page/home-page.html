@@ -1,23 +1,16 @@
-<!-- @if (cityResource.hasValue().) {
+@if (cityResource.hasValue()) {
   @let city = cityResource.value();
 
-  <p (click)="findCityByName('Madrid')">{{ city | json }}</p> -->
-
-  <!-- <img
-    [src]="'https://openweathermap.org/img/wn/' + city?.weather[0].icon + '@2x.png'"
-    [alt]="city?.weather[0].description"
-  /> -->
-
-<!-- } -->
-<div class="content">
-  <section class="home">
-    <section class="home__header">
-      <h2 class="header__title">Find the weather in your city</h2>
-      <h3 class="header__subtitle">Get the latest weather information</h3>
-      <p>Search input</p>
+  <div class="content">
+    <section class="home">
+      <section class="home__header">
+        <h2 class="header__title">Find the weather in your city</h2>
+        <h3 class="header__subtitle">Get the latest weather information</h3>
+        <p>Search input</p>
+      </section>
+      <section class="home__card">
+        <app-card [city]="city!" />
+      </section>
     </section>
-    <section class="home__card">
-      <app-card />
-    </section>
-  </section>
-</div>
+  </div>
+}

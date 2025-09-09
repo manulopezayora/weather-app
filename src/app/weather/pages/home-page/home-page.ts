@@ -1,8 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, effect, inject, signal } from '@angular/core';
+import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { Card } from "@weather/components/card/card";
 import { selectUser } from 'src/app/store/user/user.selectors';
+import { loadWeather } from 'src/app/store/weather/weather.actions';
+import { selectCityByName } from 'src/app/store/weather/weather.selectors';
 
 @Component({
   selector: 'app-home-page',
@@ -20,16 +22,16 @@ export class HomePage {
     this.cityToSearch.set(this.user()?.city ?? '');
   }
 
-  // private loadWeatherEffect = effect(() => {
-  //   if (this.cityToSearch()) {
-  //     this.store.dispatch(loadWeather({ city: this.cityToSearch() }));
-  //   }
-  // });
+  private loadWeatherEffect = effect(() => {
+    if (this.cityToSearch()) {
+      this.store.dispatch(loadWeather({ city: this.cityToSearch() }));
+    }
+  });
 
-  // public cityResource = rxResource({
-  //   params: this.cityToSearch,
-  //   stream: ({ params }) => this.store.select(selectCityByName({ city: params }))
-  // });
+  public cityResource = rxResource({
+    params: this.cityToSearch,
+    stream: ({ params }) => this.store.select(selectCityByName({ city: params }))
+  });
 
   public findCityByName(name: string): void {
     this.cityToSearch.update(() => name);
