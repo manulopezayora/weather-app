@@ -9,7 +9,7 @@ export class UserService {
   private router = inject(Router);
 
   public createUser(user: User) {
-    const existUser = this.getUser(user.username, user.password);
+    const existUser = this.getUser(user.username);
 
     if (existUser) {
       console.error('User is already exist');
@@ -25,19 +25,25 @@ export class UserService {
     });
   }
 
-  public getUser(username: string, password: string): User | undefined {
-    const parsedUsers = this.getParsedUsers();
+  public getUser(username: string): User | undefined {
+    const parsedUsers = this.getUsersFromLocalStorage();
+
+    return parsedUsers?.find((user) => username === user.username);
+  }
+
+  public getUserIsExist(username: string, password: string): User | undefined {
+    const parsedUsers = this.getUsersFromLocalStorage();
 
     return parsedUsers?.find((user) => username === user.username && password === user.password);
   }
 
-  private getParsedUsers(): User[] {
+  private getUsersFromLocalStorage(): User[] {
     const users = localStorage.getItem('weatherUser');
     return users ? JSON.parse(users) : [];
   }
 
   private saveUser(newUser: User): void {
-    const parsedUsers = this.getParsedUsers();
+    const parsedUsers = this.getUsersFromLocalStorage();
     const parsedUser = JSON.stringify([...parsedUsers, newUser]);
     localStorage.setItem('weatherUser', parsedUser);
     this.router.navigateByUrl('/login');

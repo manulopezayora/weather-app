@@ -16,17 +16,19 @@ export class UserEffects {
   loadUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.loadUser),
-      exhaustMap(({ user }) => of(this.userService.getUser(user.username, user.password))
+      exhaustMap(({ user }) => of(this.userService.getUserIsExist(user.username, user.password))
         .pipe(
           tap(() => this.router.navigateByUrl('/weather')),
           map(user => {
             const userParsed = user as User;
             this.authService.setLoggedIn(true);
+            sessionStorage.setItem('weatherAppUserLogged', user?.username || '');
 
             return UserActions.loadUserSuccess({ user: userParsed });
           }),
           catchError(({ message }) => {
             this.authService.setLoggedIn(false);
+            sessionStorage.removeItem('weatherAppUserLogged');
 
             return of(UserActions.loadUserFailure({ error: message}));
           })
