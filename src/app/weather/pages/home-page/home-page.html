@@ -1,16 +1,16 @@
-@if (cityResource.hasValue()) {
-  @let city = cityResource.value();
-
-  <div class="content">
-    <section class="home">
-      <section class="home__header">
-        <h2 class="header__title">Find the weather in your city</h2>
-        <h3 class="header__subtitle">Get the latest weather information</h3>
-        <p>Search input</p>
-      </section>
-      <section class="home__card">
-        <app-card [city]="city!" />
-      </section>
+<div class="content">
+  <section class="home">
+    <section class="home__header">
+      <h2 class="header__title">Find the weather in your city</h2>
+      <h3 class="header__subtitle">Get the latest weather information</h3>
     </section>
-  </div>
-}
+
+    <app-searcher (searchValue)="findCityByName($event)" />
+
+    <section class="home__card">
+      @if (cityResource.hasValue()) {
+        <app-card [city]="cityResource.value()!" />
+      }
+    </section>
+  </section>
+</div>

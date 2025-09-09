@@ -13,7 +13,7 @@ export const selectCityByName = ({ city }: { city: string }) => createSelector(
   ({ cities }) => {
 
     if (cities.length) {
-      return cities.find(({ name }) => city === name);
+      return cities.find(({ name }) => city.trim().toLowerCase() === name.trim().toLowerCase());
     }
 
     return null;
