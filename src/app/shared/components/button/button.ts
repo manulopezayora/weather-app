@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
 type ButtonType = 'submit' | 'button';
@@ -12,6 +12,9 @@ type ButtonType = 'submit' | 'button';
 export class Button {
 
   public label = input<string>();
+  public icon = input<string>();
   public type = input<ButtonType>('button');
+
+  public iconButton = computed(() => this.icon() ? `pi pi-${this.icon()}` : '');
 
 }
