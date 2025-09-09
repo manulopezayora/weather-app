@@ -1,0 +1,29 @@
+.content {
+  display: grid;
+  place-items: center;
+}
+
+.home {
+  width: 80%;
+}
+
+.home__header {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.header__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header__subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .home {
+    width: 50%;
+  }
+}

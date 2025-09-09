@@ -16,6 +16,5 @@ export class App {
 
   constructor() {
     this.authService.autoLogin();
-    // this.store.dispatch(loadWeather({ city: 'valencia' }));
   }
 }
