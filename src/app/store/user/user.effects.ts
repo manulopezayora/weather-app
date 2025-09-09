@@ -36,4 +36,21 @@ export class UserEffects {
       )
     );
   });
+
+  logoutUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.logoutUser),
+      exhaustMap(() => of(sessionStorage.removeItem('weatherAppUserLogged'))
+        .pipe(
+          map(() => {
+            this.router.navigateByUrl('/auth/login');
+            this.authService.setLoggedIn(false);
+
+            return UserActions.logoutUserSuccess();
+          }),
+          catchError(({ message }) => of(UserActions.logoutUserFailure({ error: message})))
+        )
+      )
+    );
+  });
 }

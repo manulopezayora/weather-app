@@ -23,5 +23,20 @@ export const userReducer = createReducer(
     ...state,
     loading: false,
     error
+  })),
+  on(UserActions.logoutUser, (state) => ({
+    ...state,
+    loading: true,
+    error: null
+  })),
+  on(UserActions.logoutUserSuccess, (state) => ({
+    ...state,
+    user: null,
+    loading: false
+  })),
+  on(UserActions.logoutUserFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error
   }))
 );

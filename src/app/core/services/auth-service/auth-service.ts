@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadUser } from 'src/app/store/user/user.actions';
+import { loadUser, logoutUser } from 'src/app/store/user/user.actions';
 import { UserService } from 'src/app/user/services/user-service/user-service';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   public logout() {
-
+    this.store.dispatch(logoutUser());
   }
 
   public autoLogin(): void {

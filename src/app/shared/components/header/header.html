@@ -7,17 +7,18 @@
   </ng-template>
 
   <ng-template #end>
-    @if (user$ | async) {
+    @if (user()) {
       <div class="header__end-container">
         <section class="header__menu">
             <p><a>Home</a></p>
             <p><a>Favorites</a></p>
         </section>
-        <section class="flex items-center gap-2">
+        <section>
           <p-avatar
             image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-            [style]="{ width: '32px', height: '32px' }"
+            (click)="menu.toggle($event)"
           />
+          <p-menu #menu [model]="menuItems()" [popup]="true" />
         </section>
       </div>
     }
