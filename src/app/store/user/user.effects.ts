@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { ToastService } from '@services/toast-service/toast-service';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth-service/auth-service';
-import { ToastService } from 'src/app/shared/services/toast-service/toast-service';
 import { UserService } from 'src/app/user/services/user-service/user-service';
 import * as UserActions from './user.actions';
 

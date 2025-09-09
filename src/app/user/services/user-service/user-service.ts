@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastService } from '@services/toast-service/toast-service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,13 @@ import { Router } from '@angular/router';
 export class UserService {
 
   private router = inject(Router);
+  private toastService = inject(ToastService)
 
   public createUser(user: User) {
     const existUser = this.getUser(user.username);
 
     if (existUser) {
-      console.error('User is already exist');
+      this.toastService.showError('User is already exist');
 
       return;
     }
@@ -47,6 +49,7 @@ export class UserService {
     const parsedUser = JSON.stringify([...parsedUsers, newUser]);
     localStorage.setItem('weatherUser', parsedUser);
     this.router.navigateByUrl('/login');
+    this.toastService.showSuccess('User is created');
   }
 
 }
