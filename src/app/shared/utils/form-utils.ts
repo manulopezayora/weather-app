@@ -22,7 +22,7 @@ export const getTextError = (errors: ValidationErrors): string | null => {
         return getPatternTextErrors(errors['pattern']);
 
       default:
-        return `Error no controlado ${key}`;
+        return `Uncontrolled error ${key}`;
     }
   }
 
@@ -56,5 +56,5 @@ export const getPatternTextErrors = (patternError: ValidationErrors): string => 
     return 'The format is not correct';
   }
 
-  return 'Error de patron de expresión regular';
+  return 'Uncontrolled regular expression pattern error';
 }

@@ -9,6 +9,7 @@ import * as UserActions from './user.actions';
 
 @Injectable()
 export class UserEffects {
+
   private actions$ = inject(Actions);
   private userService = inject(UserService);
   private authService = inject(AuthService);

@@ -13,6 +13,7 @@ import { Checkbox } from 'primeng/checkbox';
     ]
 })
 export class InputCheckbox implements ControlValueAccessor {
+
   public id = input.required<string>();
   public label = input.required<string>();
   public placeholder = input<string>();

@@ -6,6 +6,7 @@ import * as WeatherActions from './weather.actions';
 
 @Injectable()
 export class WeatherEffects {
+
   private actions$ = inject(Actions);
   private weatherService = inject(WeatherService);
 
