@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import { catchError, exhaustMap, map, of } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth-service/auth-service';
 import { UserService } from 'src/app/user/services/user-service/user-service';
 import * as UserActions from './user.actions';
@@ -18,11 +18,16 @@ export class UserEffects {
       ofType(UserActions.loadUser),
       exhaustMap(({ user }) => of(this.userService.getUserIsExist(user.username, user.password))
         .pipe(
-          tap(() => this.router.navigateByUrl('/weather')),
           map(user => {
+
+            if (!user) {
+              throw Error('The username or password is incorrect');
+            }
+
             const userParsed = user as User;
             this.authService.setLoggedIn(true);
             sessionStorage.setItem('weatherAppUserLogged', user?.username || '');
+            this.router.navigateByUrl('/weather')
 
             return UserActions.loadUserSuccess({ user: userParsed });
           }),
