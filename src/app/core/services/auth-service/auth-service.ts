@@ -25,4 +25,13 @@ export class AuthService {
 
   }
 
+  public autoLogin(): void {
+    const username = sessionStorage.getItem('weatherAppUserLogged');
+    const user = this.userService.getUser(username ?? '');
+
+    if (user) {
+      this.login(user);
+    }
+  }
+
 }
