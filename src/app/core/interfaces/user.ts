@@ -2,5 +2,5 @@ interface User {
   username: string;
   city: string;
   password: string;
-  favorites?: string[];
+  favorites?: number[];
 }

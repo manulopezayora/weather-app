@@ -15,11 +15,12 @@ export class WeatherService {
 
   private baseUrl = 'https://api.openweathermap.org/data/2.5';
 
-  getWeatherByCity(city: string): Observable<CityWeather> {
+  public getWeatherByCity(city: string): Observable<CityWeather> {
     return this.http.get<CityWeather>(`${this.baseUrl}/weather?q=${city}&appid=${environment.weatherKey}&units=metric&lang=en`);
   }
 
-  getForecastByCity(city: string): Observable<any> {
+  public getForecastByCity(city: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/forecast?q=${city}&appid=${environment.weatherKey}&units=metric&lang=es`);
   }
+
 }

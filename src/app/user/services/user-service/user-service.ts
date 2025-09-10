@@ -1,6 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { ToastService } from '@services/toast-service/toast-service';
+import { first } from 'rxjs';
+import { selectUser } from 'src/app/store/user/user.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +11,8 @@ import { ToastService } from '@services/toast-service/toast-service';
 export class UserService {
 
   private router = inject(Router);
-  private toastService = inject(ToastService)
+  private toastService = inject(ToastService);
+  private store = inject(Store);
 
   public createUser(user: User): void {
     const existUser = this.getUser(user.username);
@@ -37,6 +41,29 @@ export class UserService {
     const parsedUsers = this.getUsersFromLocalStorage();
 
     return parsedUsers?.find((user) => username === user.username && password === user.password);
+  }
+
+  public addToFavorite(id: number): number {
+    this.addFavoritesToLocalStorage(id);
+
+    return id;
+  }
+
+  private addFavoritesToLocalStorage(id: number): void {
+    this.store.select(selectUser).pipe(first()).subscribe(user => {
+
+      const parsedUsers = this.getUsersFromLocalStorage();
+
+      const userToEdit = parsedUsers.find(({ username }) => user?.username === username);
+
+      if (userToEdit) {
+        userToEdit.favorites = [...new Set([...(userToEdit?.favorites ?? []), id])];
+      }
+
+      const usersToSave = JSON.stringify(parsedUsers);
+      localStorage.setItem('weatherUser', usersToSave);
+    });
+
   }
 
   private getUsersFromLocalStorage(): User[] {

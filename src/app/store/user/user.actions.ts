@@ -23,3 +23,18 @@ export const logoutUserFailure = createAction(
   '[User] Log Out User Failure',
   props<{ error: string }>()
 );
+
+export const addToFavorite = createAction(
+  '[User] Add To Favorite',
+  props<{ id: number }>()
+);
+
+export const addToFavoriteSuccess = createAction(
+  '[User] Add To Favorite Success',
+  props<{ id: number }>()
+);
+
+export const addToFavoriteFailure = createAction(
+  '[User] Add To Favorite Failure',
+  props<{ error: string }>()
+);

@@ -39,7 +39,7 @@ export class UserEffects {
             this.toastService.showError(message);
             sessionStorage.removeItem('weatherAppUserLogged');
 
-            return of(UserActions.loadUserFailure({ error: message}));
+            return of(UserActions.loadUserFailure({ error: message }));
           })
         )
       )
@@ -57,7 +57,19 @@ export class UserEffects {
 
             return UserActions.logoutUserSuccess();
           }),
-          catchError(({ message }) => of(UserActions.logoutUserFailure({ error: message})))
+          catchError(({ message }) => of(UserActions.logoutUserFailure({ error: message })))
+        )
+      )
+    );
+  });
+
+  addToFavorite$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.addToFavorite),
+      exhaustMap(({ id }) => of(this.userService.addToFavorite(id))
+        .pipe(
+          map((id) => UserActions.addToFavoriteSuccess({ id })),
+          catchError(({ message }) => of(UserActions.addToFavoriteFailure({ error: message })))
         )
       )
     );

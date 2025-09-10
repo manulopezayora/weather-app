@@ -9,7 +9,7 @@
         </div>
         <img [src]="iconUrl()" [alt]="description()">
       </div>
-      <app-button label="Add to favorites" icon="heart" />
+      <app-button label="Add to favorites" icon="heart" (click)="addToFavorite(city().id)" />
     </div>
   </p-card>
 }
