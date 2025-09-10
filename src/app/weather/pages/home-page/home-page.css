@@ -1,12 +1,13 @@
 .content {
   display: grid;
   place-items: center;
+  padding: 0 1rem;
 }
 
 .home {
-  width: 80%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   row-gap: 2rem;
 }
 
@@ -23,13 +24,4 @@
 .header__subtitle {
   font-size: 1.2rem;
   font-weight: 500;
-}
-
-.home__card {
-  max-width: 400px;
-}
-@media screen and (min-width: 768px) {
-  .home {
-    width: 50%;
-  }
 }
