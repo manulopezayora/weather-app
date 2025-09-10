@@ -74,4 +74,17 @@ export class UserEffects {
       )
     );
   });
+
+  removeFromFavorites$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.removeFromFavorite),
+      exhaustMap(({ id }) => of(this.userService.removeFromFavorites(id))
+        .pipe(
+          map((id) => UserActions.removeFromFavoriteSuccess({ id })),
+          catchError(({ message }) => of(UserActions.removeFromFavoriteFailure({ error: message })))
+        )
+      )
+    );
+  });
+
 }

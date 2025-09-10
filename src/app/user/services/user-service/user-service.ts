@@ -44,26 +44,34 @@ export class UserService {
   }
 
   public addToFavorite(id: number): number {
-    this.addFavoritesToLocalStorage(id);
+    this.managementFavoritesFromLocalStorage(id, 'add');
 
     return id;
   }
 
-  private addFavoritesToLocalStorage(id: number): void {
+  public removeFromFavorites(id: number): number {
+    this.managementFavoritesFromLocalStorage(id, 'remove');
+
+    return id;
+  }
+
+  private managementFavoritesFromLocalStorage(id: number, action: 'add' | 'remove'): void {
     this.store.select(selectUser).pipe(first()).subscribe(user => {
 
       const parsedUsers = this.getUsersFromLocalStorage();
-
       const userToEdit = parsedUsers.find(({ username }) => user?.username === username);
 
-      if (userToEdit) {
+      if (userToEdit && action === 'add') {
         userToEdit.favorites = [...new Set([...(userToEdit?.favorites ?? []), id])];
+      }
+
+      if (userToEdit && action === 'remove') {
+        userToEdit.favorites = userToEdit?.favorites?.filter(fav => fav !== id) ?? [];
       }
 
       const usersToSave = JSON.stringify(parsedUsers);
       localStorage.setItem('weatherUser', usersToSave);
     });
-
   }
 
   private getUsersFromLocalStorage(): User[] {

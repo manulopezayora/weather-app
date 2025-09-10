@@ -38,3 +38,18 @@ export const addToFavoriteFailure = createAction(
   '[User] Add To Favorite Failure',
   props<{ error: string }>()
 );
+
+export const removeFromFavorite = createAction(
+  '[User] Remove Form Favorite',
+  props<{ id: number }>()
+);
+
+export const removeFromFavoriteSuccess = createAction(
+  '[User] Remove Form Favorite Success',
+  props<{ id: number }>()
+);
+
+export const removeFromFavoriteFailure = createAction(
+  '[User] Remove Form Favorite Failure',
+  props<{ error: string }>()
+);

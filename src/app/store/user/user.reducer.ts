@@ -64,8 +64,29 @@ export const userReducer = createReducer(
     loading: false,
     error
   })),
-  // on(UserActions.removeFavorite, (state, { city }) => ({
-  //   ...state,
-  //   favorites: state.favorites.filter(fav => fav !== city)
-  // }))
+  on(UserActions.removeFromFavorite, (state) => ({
+    ...state,
+    loading: true,
+    error: null
+  })),
+  on(UserActions.removeFromFavoriteSuccess, (state, { id }) => {
+    if (!state.user) {
+      return state;
+    }
+
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        favorites: state.user.favorites?.filter(fav => fav !== id),
+      },
+      loading: false,
+      error: null
+    }
+  }),
+  on(UserActions.removeFromFavoriteFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error
+  }))
 );
