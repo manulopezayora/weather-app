@@ -10,7 +10,7 @@
         <img [src]="iconUrl()" [alt]="description()">
       </div>
       @if (hasFavorite()) {
-        <app-button label="Remove to favorites" icon="trash" (click)="removeFromFavorites(city().id)" />
+        <app-button label="Remove to favorites" icon="trash" color="danger" (click)="removeFromFavorites(city().id)" />
       }
 
       @else {
