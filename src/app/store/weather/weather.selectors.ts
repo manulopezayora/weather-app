@@ -7,3 +7,15 @@ export const selectCities = createSelector(
   selectWeatherState,
   (state) => state.cities
 );
+
+export const selectCityByName = ({ city }: { city: string }) => createSelector(
+  selectWeatherState,
+  ({ cities }) => {
+
+    if (cities.length) {
+      return cities.find(({ name }) => city.trim().toLowerCase() === name.trim().toLowerCase());
+    }
+
+    return null;
+  }
+);

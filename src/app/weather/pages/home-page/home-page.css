@@ -1,0 +1,35 @@
+.content {
+  display: grid;
+  place-items: center;
+}
+
+.home {
+  width: 80%;
+  display: grid;
+  place-items: center;
+  row-gap: 2rem;
+}
+
+.home__header {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.header__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header__subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.home__card {
+  max-width: 400px;
+}
+@media screen and (min-width: 768px) {
+  .home {
+    width: 50%;
+  }
+}

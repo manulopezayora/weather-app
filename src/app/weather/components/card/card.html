@@ -1,0 +1,21 @@
+@if (city()) {
+  <p-card>
+    <div class="card">
+      <div class="card__info">
+        <div class="info__container">
+          <p>{{ name() }}</p>
+          <p>{{ temp() }}</p>
+          <p>{{ weather() }}</p>
+        </div>
+        <img [src]="iconUrl()" [alt]="description()">
+      </div>
+      @if (hasFavorite()) {
+        <app-button label="Remove to favorites" icon="trash" color="danger" (click)="removeFromFavorites(city().id)" />
+      }
+
+      @else {
+        <app-button label="Add to favorites" icon="heart" (click)="addToFavorites(city().id)" />
+      }
+    </div>
+  </p-card>
+}
