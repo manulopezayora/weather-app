@@ -26,7 +26,7 @@ export class WeatherEffects {
           catchError((error: HttpErrorResponse) => {
             this.toastService.showError(`Location ${error.statusText}`);
 
-            return of(WeatherActions.loadWeatherFailure({ error: error.message}))
+            return of(WeatherActions.loadWeatherFailure({ error: error.message}));
           })
         )
       )
