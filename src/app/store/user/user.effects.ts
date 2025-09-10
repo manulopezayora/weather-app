@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -57,7 +58,11 @@ export class UserEffects {
 
             return UserActions.logoutUserSuccess();
           }),
-          catchError(({ message }) => of(UserActions.logoutUserFailure({ error: message })))
+          catchError((error: HttpErrorResponse) => {
+            this.toastService.showError(error.statusText);
+
+            return of(UserActions.logoutUserFailure({ error: error.statusText }));
+          })
         )
       )
     );
@@ -68,8 +73,16 @@ export class UserEffects {
       ofType(UserActions.addToFavorite),
       exhaustMap(({ id }) => of(this.userService.addToFavorite(id))
         .pipe(
-          map((id) => UserActions.addToFavoriteSuccess({ id })),
-          catchError(({ message }) => of(UserActions.addToFavoriteFailure({ error: message })))
+          map((id) => {
+            this.toastService.showSuccess('City added to favorites')
+
+            return UserActions.addToFavoriteSuccess({ id });
+          }),
+          catchError((error: HttpErrorResponse) => {
+            this.toastService.showError(error.statusText);
+
+            return of(UserActions.addToFavoriteFailure({ error: error.statusText }));
+          })
         )
       )
     );
@@ -80,8 +93,16 @@ export class UserEffects {
       ofType(UserActions.removeFromFavorite),
       exhaustMap(({ id }) => of(this.userService.removeFromFavorites(id))
         .pipe(
-          map((id) => UserActions.removeFromFavoriteSuccess({ id })),
-          catchError(({ message }) => of(UserActions.removeFromFavoriteFailure({ error: message })))
+          map((id) => {
+            this.toastService.showSuccess('City removed from favorites');
+
+            return UserActions.removeFromFavoriteSuccess({ id });
+          }),
+          catchError((error: HttpErrorResponse) => {
+            this.toastService.showError(error.statusText);
+
+            return of(UserActions.removeFromFavoriteFailure({ error: error.statusText }));
+          })
         )
       )
     );
