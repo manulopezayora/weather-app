@@ -22,7 +22,7 @@ export class Card {
   public name = computed(() => this.city().name);
   public iconUrl = computed(() => `https://openweathermap.org/img/wn/${this.city().weather[0].icon}@2x.png`);
   public description = computed(() => this.city().weather[0].description);
-  public temp = computed(() => `${Math.floor(this.city().main.temp)} ºC`);
+  public temp = computed(() => `${Math.round(this.city().main.temp)} ºC`);
   public weather = computed(() => this.city().weather[0].main);
   public hasFavorite = computed(() => this.user()?.favorites?.includes(this.city().id));
 

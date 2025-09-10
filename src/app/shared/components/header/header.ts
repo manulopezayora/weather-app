@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Icon } from '@components/icon/icon';
 import { Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
@@ -16,7 +17,9 @@ import { selectUser } from 'src/app/store/user/user.selectors';
     Icon,
     Menu,
     Toolbar,
-  ],
+    RouterLink,
+    RouterLinkActive
+],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })

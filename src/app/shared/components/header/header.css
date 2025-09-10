@@ -31,3 +31,7 @@
   height: 32px;
   cursor: pointer;
 }
+
+.active {
+  color: var(--p-button-link-color);
+}
