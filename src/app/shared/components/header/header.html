@@ -18,7 +18,7 @@
             image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
             (click)="menu.toggle($event)"
           />
-          <p-menu #menu [model]="menuItems()" [popup]="true" />
+          <p-menu #menu [model]="menuItems()" [popup]="true" appendTo="body" />
         </section>
       </div>
     }
