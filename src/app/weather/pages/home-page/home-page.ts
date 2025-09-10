@@ -6,7 +6,7 @@ import { Searcher } from "@weather/components/searcher/searcher";
 import { WeatherService } from '@weather/services/weatherService/weather-service';
 import { selectUser } from 'src/app/store/user/user.selectors';
 import { loadWeather } from 'src/app/store/weather/weather.actions';
-import { selectCityByName } from 'src/app/store/weather/weather.selectors';
+import { selectCityById } from 'src/app/store/weather/weather.selectors';
 
 @Component({
   selector: 'app-home-page',
@@ -34,7 +34,7 @@ export class HomePage {
 
   public cityResource = rxResource({
     params: this.weatherService.currentCity,
-    stream: ({ params }) => this.store.select(selectCityByName({ city: params }))
+    stream: ({ params }) => this.store.select(selectCityById(params))
   });
 
   public findCityByName(name: string): void {

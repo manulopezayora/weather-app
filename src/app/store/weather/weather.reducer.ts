@@ -1,13 +1,17 @@
+import { createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
+import { CityWeather } from 'src/app/core/interfaces/city-weather';
 import { WeatherState } from '../../core/interfaces/weather-state';
 import * as WeatherActions from './weather.actions';
 
-export const initialState: WeatherState = {
-  cities: [],
-  favorites: [],
+export const weatherAdapter = createEntityAdapter<CityWeather>({
+  selectId: (city) => city.id
+});
+
+export const initialState: WeatherState = weatherAdapter.getInitialState({
   loading: false,
   error: null
-};
+});
 
 export const weatherReducer = createReducer(
   initialState,
@@ -16,22 +20,18 @@ export const weatherReducer = createReducer(
     loading: true,
     error: null
   })),
-  on(WeatherActions.loadWeatherSuccess, (state, { cityWeather }) => ({
-    ...state,
-    cities: [...state.cities.filter(city => city.name !== cityWeather.name), cityWeather],
-    loading: false
-  })),
+  on(WeatherActions.loadWeatherSuccess, (state, { cityWeather }) => (weatherAdapter.upsertOne(cityWeather, {
+      ...state,
+      loading: false
+    }))),
   on(WeatherActions.loadWeatherFailure, (state, { error }) => ({
     ...state,
     loading: false,
     error
   })),
-  // on(WeatherActions.addFavorite, (state, { city }) => ({
-  //   ...state,
-  //   favorites: [...new Set([...state.favorites, city])]
-  // })),
-  // on(WeatherActions.removeFavorite, (state, { city }) => ({
-  //   ...state,
-  //   favorites: state.favorites.filter(fav => fav !== city)
-  // }))
+  on(WeatherActions.loadWeatherBatch, (state) => ({ ...state, loading: true })),
+  on(WeatherActions.loadWeatherBatchSuccess, (state, { cities }) =>
+    weatherAdapter.upsertMany(cities, { ...state, loading: false })
+  ),
+  on(WeatherActions.loadWeatherBatchFailure, (state, { error }) => ({ ...state, loading: false, error }))
 );

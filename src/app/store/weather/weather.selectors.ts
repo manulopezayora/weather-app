@@ -1,21 +1,20 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { WeatherState } from '../../core/interfaces/weather-state';
+import { weatherAdapter } from './weather.reducer';
 
 export const selectWeatherState = createFeatureSelector<WeatherState>('weather');
 
-export const selectCities = createSelector(
-  selectWeatherState,
-  (state) => state.cities
-);
+const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal
+} = weatherAdapter.getSelectors(selectWeatherState);
 
-export const selectCityByName = ({ city }: { city: string }) => createSelector(
-  selectWeatherState,
-  ({ cities }) => {
+export const selectWeatherEntities = selectEntities;
+export const selectAllWeather = selectAll;
 
-    if (cities.length) {
-      return cities.find(({ name }) => city.trim().toLowerCase() === name.trim().toLowerCase());
-    }
-
-    return null;
-  }
+export const selectCityById = (id: number) => createSelector(
+  selectWeatherEntities,
+  (entities) => entities[id]
 );

@@ -6,3 +6,8 @@ export const selectUser = createSelector(
   selectUserState,
   (state) => state.user
 );
+
+export const selectFavoriteIds = createSelector(
+  selectUser,
+  (user) => user?.favorites ?? []
+);
