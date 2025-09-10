@@ -46,10 +46,14 @@ export class WeatherEffects {
       ),
       map(([_, favoriteIds, weatherEntities]) => favoriteIds.filter(id => !weatherEntities[id])),
       filter(missing => missing.length > 0),
-      switchMap(missingIds =>
-        this.weatherService.getCitiesByIds(missingIds).pipe(
+      switchMap(missingIds => this.weatherService.getCitiesByIds(missingIds)
+        .pipe(
           map(cities => WeatherActions.loadWeatherBatchSuccess({ cities })),
-          catchError(error => of(WeatherActions.loadWeatherBatchFailure({ error })))
+          catchError((error: string) => {
+            this.toastService.showError(`Location ${error}`);
+
+            return of(WeatherActions.loadWeatherBatchFailure({ error }));
+          })
         )
       )
     );
