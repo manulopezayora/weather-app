@@ -17,7 +17,6 @@ export class Card {
 
   private store = inject(Store);
 
-
   public city = input.required<CityWeather>();
 
   public name = computed(() => this.city().name);
