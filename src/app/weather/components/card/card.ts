@@ -28,11 +28,11 @@ export class Card {
 
   private user = toSignal(this.store.select(selectUser));
 
-  public addToFavorites(id: number) {
+  public addToFavorites(id: number): void {
     this.store.dispatch(addToFavorite({ id }));
   }
 
-  public removeFromFavorites(id: number) {
+  public removeFromFavorites(id: number): void {
     this.store.dispatch(removeFromFavorite({ id }));
   }
 
