@@ -1,5 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { Button } from "@components/index";
 import { Store } from '@ngrx/store';
 import { CardModule } from 'primeng/card';
@@ -16,6 +17,7 @@ import { selectUser } from 'src/app/store/user/user.selectors';
 export class Card {
 
   private store = inject(Store);
+  private router = inject(Router);
 
   public city = input.required<CityWeather>();
 
@@ -27,6 +29,10 @@ export class Card {
   public hasFavorite = computed(() => this.user()?.favorites?.includes(this.city().id));
 
   private user = toSignal(this.store.select(selectUser));
+
+  public navigateToForecast(): void {
+    this.router.navigate(['/weather/forecast', this.city().id]);
+  }
 
   public addToFavorites(id: number): void {
     this.store.dispatch(addToFavorite({ id }));

@@ -12,6 +12,8 @@
   display: flex;
   column-gap: 5rem;
   margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .info__container p:nth-child(1) {
@@ -25,4 +27,10 @@
 
 .info__container p:nth-child(3) {
   font-size: 1.5rem;
+}
+
+.info__actions {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
