@@ -46,4 +46,9 @@
   .forecast__card {
     max-width: 80%;
   }
+
+  .forecast__info {
+    max-width: 500px;
+    margin: auto;
+  }
 }
