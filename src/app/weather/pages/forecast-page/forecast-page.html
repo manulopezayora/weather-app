@@ -1,1 +1,34 @@
-<p>forecast-page works!</p>
+<div class="forecast">
+  <h2 class="forecast__title">Weather Forecast for {{ forecastList()?.[0]?.name }}</h2>
+  <h3 class="forecast__subtitle">Next Days</h3>
+  <div class="forecast__card">
+    <p-tabs [value]="0">
+      <p-tablist>
+        @for (forecast of forecastList(); track $index) {
+          <p-tab [value]="$index">{{ forecast.date | date }}</p-tab>
+        }
+      </p-tablist>
+      <p-tabpanels>
+        @for (forecast of forecastList(); track $index) {
+          <p-tabpanel [value]="$index">
+            <section class="forecast__info">
+              <div class="left">
+                <img [src]="'https://openweathermap.org/img/wn/' + forecast.weather.icon + '@2x.png'" [alt]="forecast.weather.description">
+                <p class="info__weather">{{ forecast.weather.main | uppercase }}</p>
+              </div>
+              <div class="right">
+                <app-forecast-card title="Max" [value]="(forecast.temp_max | number: '1.0-0')?.toString() || ''" unit="ºC" />
+                <app-forecast-card title="Min" [value]="(forecast.temp_min | number: '1.0-0')?.toString() || ''" unit="ºC" />
+                <app-forecast-card title="Wind" [value]="forecast.wind_max.speed" unit="m/s" />
+                <app-forecast-card title="Direction" [value]="forecast.wind_max.deg" />
+                <app-forecast-card title="Humidity" [value]="forecast.humidity_avg" unit="%" />
+                <app-forecast-card title="Rain" [value]="forecast.pop_max" unit="%" />
+              </div>
+            </section>
+          </p-tabpanel>
+        }
+      </p-tabpanels>
+    </p-tabs>
+  </div>
+</div>
+
