@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@netlify/angular-runtime": "^3.0.0",
+    "@netlify/functions": "^4.2.5",
     "@ngrx/effects": "^20.0.1",
     "@ngrx/entity": "^20.0.1",
     "@ngrx/store": "^20.0.1",

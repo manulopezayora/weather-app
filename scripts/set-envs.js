@@ -14,7 +14,8 @@ if (!weatherKey) {
 
 const envFileContent = `
 export const environment = {
-  weatherKey: "${weatherKey}"
+  production: ${process.env.NODE_ENV === 'production'},
+  apiBaseUrl: '/api'
 };
 `
 mkdirSync('./src/environments', { recursive: true });

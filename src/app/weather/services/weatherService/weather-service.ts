@@ -15,14 +15,17 @@ export class WeatherService {
 
   public currentCity = signal<number>(0);
 
-  private baseUrl = 'https://api.openweathermap.org/data/2.5';
+  private baseUrl = '/api';
+  // private baseUrl = 'https://api.openweathermap.org/data/2.5';
 
   public getWeatherByCity(city: string): Observable<CityWeather> {
-    return this.http.get<CityWeather>(`${this.baseUrl}/weather?q=${city}&appid=${environment.weatherKey}&units=metric&lang=en`);
+    return this.http.get<CityWeather>(`${this.baseUrl}/weather?q=${city}&units=metric&lang=en`);
+    // return this.http.get<CityWeather>(`${this.baseUrl}/weather?q=${city}&appid=${environment.weatherKey}&units=metric&lang=en`);
   }
 
   public getCitiesByIds(ids: number[]): Observable<CityWeather[]> {
-    const requests = ids.map(id => this.http.get<CityWeather>(`${this.baseUrl}/weather?id=${id}&appid=${environment.weatherKey}&units=metric&lang=en`).pipe(
+    // const requests = ids.map(id => this.http.get<CityWeather>(`${this.baseUrl}/weather?id=${id}&appid=${environment.weatherKey}&units=metric&lang=en`).pipe(
+    const requests = ids.map(id => this.http.get<CityWeather>(`${this.baseUrl}/weather?id=${id}&units=metric&lang=en`).pipe(
       catchError((error: HttpErrorResponse) => {
         throw Error(error.statusText);
       })
