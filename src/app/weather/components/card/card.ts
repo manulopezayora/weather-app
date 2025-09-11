@@ -30,8 +30,8 @@ export class Card {
 
   private user = toSignal(this.store.select(selectUser));
 
-  public navigateToForecast(): void {
-    this.router.navigate(['/weather/forecast', this.city().id]);
+  public navigateToForecast(id: number): void {
+    this.router.navigate(['/weather/forecast', id]);
   }
 
   public addToFavorites(id: number): void {
