@@ -1,0 +1,54 @@
+.forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  row-gap: 2rem;
+}
+
+.forecast__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.forecast__subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.forecast__card {
+  width: 100%;
+}
+
+.forecast__info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .8rem;
+}
+
+.info__weather {
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .forecast__card {
+    max-width: 80%;
+  }
+
+  .forecast__info {
+    max-width: 500px;
+    margin: auto;
+  }
+}

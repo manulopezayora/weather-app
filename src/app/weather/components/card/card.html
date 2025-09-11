@@ -9,13 +9,16 @@
         </div>
         <img [src]="iconUrl()" [alt]="description()">
       </div>
-      @if (hasFavorite()) {
-        <app-button label="Remove to favorites" icon="trash" color="danger" (click)="removeFromFavorites(city().id)" />
-      }
+      <div class="info__actions">
+        <app-button label="See forecast" icon="sun" variant="outlined" (click)="navigateToForecast(city().id)" />
+        @if (hasFavorite()) {
+          <app-button label="Remove to favorites" icon="trash" color="danger" (click)="removeFromFavorites(city().id)" />
+        }
 
-      @else {
-        <app-button label="Add to favorites" icon="heart" (click)="addToFavorites(city().id)" />
-      }
+        @else {
+          <app-button label="Add to favorites" icon="heart" (click)="addToFavorites(city().id)" />
+        }
+      </div>
     </div>
   </p-card>
 }

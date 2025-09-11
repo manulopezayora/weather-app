@@ -20,7 +20,8 @@ export const weatherReducer = createReducer(
     loading: true,
     error: null
   })),
-  on(WeatherActions.loadWeatherSuccess, (state, { cityWeather }) => (weatherAdapter.upsertOne(cityWeather, {
+  on(WeatherActions.loadWeatherSuccess, (state, { cityWeather }) => (
+    weatherAdapter.upsertOne(cityWeather, {
       ...state,
       loading: false
     }))),
@@ -33,5 +34,11 @@ export const weatherReducer = createReducer(
   on(WeatherActions.loadWeatherBatchSuccess, (state, { cities }) =>
     weatherAdapter.upsertMany(cities, { ...state, loading: false })
   ),
-  on(WeatherActions.loadWeatherBatchFailure, (state, { error }) => ({ ...state, loading: false, error }))
+  on(WeatherActions.loadWeatherBatchFailure, (state, { error }) => ({ ...state, loading: false, error })),
+  on(WeatherActions.clearAllWeathers, (state) => (
+    weatherAdapter.removeAll({
+      ...state,
+      loading: false,
+      error: null
+    }))),
 );

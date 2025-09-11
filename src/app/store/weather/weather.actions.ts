@@ -30,3 +30,5 @@ export const loadWeatherBatchFailure = createAction(
   '[Weather] Load Weather Batch Failure',
   props<{ error: any }>()
 );
+
+export const clearAllWeathers = createAction('[Weather] Clear all Weathers');
