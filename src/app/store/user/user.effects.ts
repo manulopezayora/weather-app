@@ -3,9 +3,10 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ToastService } from '@services/toast-service/toast-service';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth-service/auth-service';
 import { UserService } from 'src/app/user/services/user-service/user-service';
+import * as WeatherActions from '../weather/weather.actions';
 import * as UserActions from './user.actions';
 
 @Injectable()
@@ -52,11 +53,14 @@ export class UserEffects {
       ofType(UserActions.logoutUser),
       exhaustMap(() => of(sessionStorage.removeItem('weatherAppUserLogged'))
         .pipe(
-          map(() => {
+          switchMap(() => {
             this.router.navigateByUrl('/auth/login');
             this.authService.setLoggedIn(false);
 
-            return UserActions.logoutUserSuccess();
+            return [
+              UserActions.logoutUserSuccess(),
+              WeatherActions.clearAllWeathers()
+            ];
           }),
           catchError((error: HttpErrorResponse) => {
             this.toastService.showError(error.statusText);
