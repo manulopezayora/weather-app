@@ -1,8 +1,8 @@
-export interface ForecastResponse {
+export interface CityForecast {
   cod:     string;
   message: number;
   cnt:     number;
-  list:    List[];
+  list:    CityForecast[];
   city:    City;
 }
 
@@ -22,7 +22,7 @@ export interface Coord {
   lon: number;
 }
 
-export interface List {
+export interface CityForecast {
   dt:         number;
   main:       MainClass;
   weather:    Weather[];
@@ -31,7 +31,7 @@ export interface List {
   visibility: number;
   pop:        number;
   sys:        Sys;
-  dt_txt:     Date;
+  dt_txt:     string;
   rain?:      Rain;
 }
 
