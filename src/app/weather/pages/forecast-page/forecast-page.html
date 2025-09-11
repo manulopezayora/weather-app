@@ -20,7 +20,7 @@
                 <app-forecast-card title="Max" [value]="(forecast.temp_max | number: '1.0-0')?.toString() || ''" unit="ºC" />
                 <app-forecast-card title="Min" [value]="(forecast.temp_min | number: '1.0-0')?.toString() || ''" unit="ºC" />
                 <app-forecast-card title="Wind" [value]="forecast.wind_max.speed" unit="m/s" />
-                <app-forecast-card title="Direction" [value]="forecast.wind_max.deg" />
+                <app-forecast-card title="Direction" [value]="(forecast.wind_max.deg| windDirection)" />
                 <app-forecast-card title="Humidity" [value]="forecast.humidity_avg" unit="%" />
                 <app-forecast-card title="Rain" [value]="(forecast.pop_max | rainProbability)" unit="%" />
               </div>
