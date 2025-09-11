@@ -4,7 +4,6 @@ import { catchError, forkJoin, map, Observable } from 'rxjs';
 import { CityWeather } from 'src/app/core/interfaces/city-weather';
 import { Forecast } from 'src/app/core/interfaces/forecast';
 import { CityForecast } from 'src/app/core/interfaces/forecast-response';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +36,8 @@ export class WeatherService {
   }
 
   public getForecastByCity(city: string): Observable<Forecast[]> {
-    return this.http.get<CityForecast>(`${this.baseUrl}/forecast?id=${city}&appid=${environment.weatherKey}&units=metric&lang=en`).pipe(
+    // return this.http.get<CityForecast>(`${this.baseUrl}/forecast?id=${city}&appid=${environment.weatherKey}&units=metric&lang=en`).pipe(
+    return this.http.get<CityForecast>(`${this.baseUrl}/forecast?id=${city}&units=metric&lang=en`).pipe(
       map(res => this.forecastMapper(res))
     );
   }
