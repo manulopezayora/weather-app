@@ -13,7 +13,7 @@ export class WindDirectionPipe implements PipeTransform {
       return cardinalDirections[cardinalIndex];
     }
 
-    return '-'
+    return '-';
   }
 
 }
