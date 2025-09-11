@@ -1,0 +1,16 @@
+<div class="content">
+  <section class="home">
+    <section class="home__header">
+      <h2 class="header__title">Find the weather in your city</h2>
+      <h3 class="header__subtitle">Get the latest weather information</h3>
+    </section>
+
+    <app-searcher (searchValue)="findCityByName($event)" />
+
+    <section class="home__card">
+      @if (cityResource.hasValue()) {
+        <app-card [city]="cityResource.value()!" />
+      }
+    </section>
+  </section>
+</div>

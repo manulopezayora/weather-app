@@ -1,0 +1,30 @@
+import { Routes } from '@angular/router';
+import { FavoritesPage } from './pages/favorites-page/favorites-page';
+import ForecastPage from './pages/forecast-page/forecast-page';
+import { HomePage } from './pages/home-page/home-page';
+
+export const weatherRoutes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: 'home',
+        component: HomePage
+      },
+      {
+        path: 'favorites',
+        component: FavoritesPage
+      },
+      {
+        path: 'forecast/:id',
+        component: ForecastPage
+      },
+      {
+        path: '**',
+        redirectTo: 'home'
+      }
+    ]
+  }
+];
+
+export default weatherRoutes;

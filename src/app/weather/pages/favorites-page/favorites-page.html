@@ -1,0 +1,12 @@
+<div class="favorites">
+  <h2 class="favorites__title">My Locations</h2>
+  <section class="favorites__content">
+    @for (city of weatherList(); track $index) {
+      <app-card [city]="city!" />
+    }
+    @empty {
+      <p class="favorites__empty">Favorites list is empty</p>
+    }
+  </section>
+</div>
+

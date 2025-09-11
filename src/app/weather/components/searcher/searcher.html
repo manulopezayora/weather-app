@@ -1,0 +1,4 @@
+<p-iconfield class="searcher">
+  <p-inputicon class="pi pi-search" />
+  <input type="text" pInputText placeholder="Search" #searchValue (keyup.enter)="sendValue(searchValue.value)" />
+</p-iconfield>

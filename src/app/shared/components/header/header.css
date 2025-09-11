@@ -1,0 +1,37 @@
+.header {
+  padding: 1rem 1rem 1rem 1.5rem;
+  border-radius: 0;
+}
+
+.header__title-container {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header__end-container {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.header__menu {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  font-weight: 700;
+}
+
+.p-avatar {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.active {
+  color: var(--p-button-link-color);
+}

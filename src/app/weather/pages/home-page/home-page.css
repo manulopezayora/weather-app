@@ -1,0 +1,27 @@
+.content {
+  display: grid;
+  place-items: center;
+  padding: 0 1rem;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+.home__header {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.header__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header__subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+}

@@ -1,0 +1,25 @@
+<form class="form" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form__field">
+    <app-input-text id="username" label="Username" formControlName="username" [control]="registerForm.controls['username']" />
+  </div>
+
+  <div class="form__field">
+    <app-input-text id="city" label="City" formControlName="city" [control]="registerForm.controls['city']" />
+  </div>
+
+  <div class="form__field">
+    <app-input-password id="password" label="Password" formControlName="password" [control]="registerForm.controls['password']" />
+  </div>
+
+  <div class="form__field">
+    <app-input-password id="confirm-password" label="Confirm password" formControlName="confirmPassword" [control]="registerForm.controls['confirmPassword']" />
+  </div>
+
+  <div class="form__actions">
+    <app-button label="Register" type="submit" />
+  </div>
+</form>
+
+<section class="register-info">
+  <p>This is a test application. Users will be saved in localStorage. It is not connected to any database or service.</p>
+</section>

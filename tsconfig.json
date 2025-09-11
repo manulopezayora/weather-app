@@ -4,6 +4,21 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": [
+        "src/app/shared/components/*"
+      ],
+      "@services/*": [
+        "src/app/shared/services/*"
+      ],
+      "@utils/*": [
+        "src/app/shared/utils/*"
+      ],
+      "@weather/*": [
+        "src/app/weather/*"
+      ],
+    },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,

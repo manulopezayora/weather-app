@@ -1,0 +1,26 @@
+<p-toolbar class="header">
+  <ng-template #start>
+    <section class="header__title-container">
+      <icon iconName="cloud" color="cyan" size="2rem" />
+      <h1 class="title">WeatherApp</h1>
+    </section>
+  </ng-template>
+
+  <ng-template #end>
+    @if (user()) {
+      <div class="header__end-container">
+        <section class="header__menu">
+            <p><a routerLink="/weather/home" routerLinkActive="active">Home</a></p>
+            <p><a routerLink="/weather/favorites" routerLinkActive="active">Favorites</a></p>
+        </section>
+        <section>
+          <p-avatar
+            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+            (click)="menu.toggle($event)"
+          />
+          <p-menu #menu [model]="menuItems()" [popup]="true" appendTo="body" />
+        </section>
+      </div>
+    }
+  </ng-template>
+</p-toolbar>
