@@ -3,12 +3,20 @@ import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { ForecastCard } from "@weather/components/forecast-card/forecast-card";
+import { RainProbabilityPipe } from '@weather/pipes/rain-probability-pipe';
 import { WeatherService } from '@weather/services/weatherService/weather-service';
 import { TabsModule } from 'primeng/tabs';
 
 @Component({
   selector: 'app-forecast-page',
-  imports: [TabsModule, DatePipe, DecimalPipe, UpperCasePipe, ForecastCard],
+  imports: [
+    DatePipe,
+    DecimalPipe,
+    ForecastCard,
+    RainProbabilityPipe,
+    TabsModule,
+    UpperCasePipe,
+  ],
   templateUrl: './forecast-page.html',
   styleUrl: './forecast-page.css'
 })

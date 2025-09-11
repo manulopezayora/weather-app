@@ -22,7 +22,7 @@
                 <app-forecast-card title="Wind" [value]="forecast.wind_max.speed" unit="m/s" />
                 <app-forecast-card title="Direction" [value]="forecast.wind_max.deg" />
                 <app-forecast-card title="Humidity" [value]="forecast.humidity_avg" unit="%" />
-                <app-forecast-card title="Rain" [value]="forecast.pop_max" unit="%" />
+                <app-forecast-card title="Rain" [value]="(forecast.pop_max | rainProbability)" unit="%" />
               </div>
             </section>
           </p-tabpanel>
